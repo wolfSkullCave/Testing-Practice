@@ -1,4 +1,4 @@
-import { capitalize, reverseString, calculator } from ".";
+import { capitalize, reverseString, calculator, caesarCipher } from ".";
 
 test("Capitalizes the first character in a string", () => {
   expect(capitalize("hello")).toBe("Hello");
@@ -19,4 +19,9 @@ test("Perform basic addition, subtraction, multiplication and division with 2 nu
   expect(calculator.mult(16, 20)).toBe(320);
   expect(calculator.div(10, 2)).toBe(5);
   expect(calculator.div(200, 16)).toBe(12.5);
+});
+
+test("Caesar Cipher ", () => {
+  expect(caesarCipher("hello", 3)).toBe("khoor");
+  expect(caesarCipher("World", 5)).toBe("Btwqi");
 });
