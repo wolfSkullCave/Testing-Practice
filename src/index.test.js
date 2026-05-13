@@ -1,4 +1,5 @@
 import { capitalize, reverseString, calculator, caesarCipher } from ".";
+import { encryptWord, decryptWord } from "./caeserCypher";
 
 test("Capitalizes the first character in a string", () => {
   expect(capitalize("hello")).toBe("Hello");
@@ -22,6 +23,17 @@ test("Perform basic addition, subtraction, multiplication and division with 2 nu
 });
 
 test("Caesar Cipher ", () => {
-  expect(caesarCipher("hello", 3)).toBe("khoor");
-  expect(caesarCipher("World", 5)).toBe("Btwqi");
+  // encryption testing
+  expect(encryptWord("a", 1)).toBe("b");
+  expect(encryptWord("c", 2)).toBe("e");
+  expect(encryptWord("z", 3)).toBe("c");
+
+  expect(encryptWord("zaza", 1)).toBe("abab");
+  expect(encryptWord("ZAZA", 2)).toBe("BCBC");
+  expect(encryptWord("ZaZa", 3)).toBe("CdCd");
+
+  // decryption testing
+  expect(decryptWord("abab", 1, false)).toBe("zaza");
+  expect(decryptWord("ABAB", 2, false)).toBe("YZYZ");
+  expect(decryptWord("aBaB", 3, false)).toBe("xYxY");
 });

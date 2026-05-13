@@ -1,85 +1,28 @@
-const alphaArr = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
+function shiftChar(letter, num) {
+  let base = 97; // 97 - 122 for lowercase
 
-const alphaCapsArr = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-];
+  if (letter === letter.toUpperCase()) {
+    base = 65; // 65 - 90 for uppercase
+  }
 
-const word = "HeLLo";
-const offset = 3;
+  let l = letter.charCodeAt(0);
 
-// testing functions
-const wordEncrypted = encryptWord(word, 3);
-wordEncrypted;
+  l += num;
 
-// encrypt word using offset
-function encryptWord(word, num) {
-  // takes a word, converts it to an array
-  // and offsets each letter by the num attribute
-  
+  let position = (l - base) % 26;
+
+  return String.fromCharCode(position + base);
 }
 
-function decryptWord(word, num) {
-  return 0;
+export function encryptWord(word, offset) {
+  let wordArr = [...word];
+  let code = wordArr.map((letter) => shiftChar(letter, offset));
+
+  return code.join("");
 }
 
-function filterCaps(word) {
-  return [...word]
-    .map((char, index) => {
-      if (char === char.toUpperCase() && char !== char.toLowerCase()) {
-        return index;
-      }
-    })
-    .filter((index) => index != undefined);
+export function decryptWord(word, offset) {
+  let wordArr = [...word];
+  let code = wordArr.map((letter) => shiftChar(letter, 26 - offset));
+  return code.join("");
 }
