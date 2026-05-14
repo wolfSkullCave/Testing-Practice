@@ -23,3 +23,4 @@ export const calculator = {
     return num1 / num2;
   },
 };
+
